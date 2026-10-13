@@ -54,6 +54,10 @@ jobs:
         working-directory: site
       - run: npm run build
         working-directory: site
+        env:
+          # Until omarseteen.space is connected the site lives at
+          # omarseteen.github.io/portfolio/. Delete this line the day the domain goes on.
+          SITE_BASE: /portfolio/
       # The exact files deploy publishes. Uploaded on every run; only deploy uses it.
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with: { path: site/dist }
