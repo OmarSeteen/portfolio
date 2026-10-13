@@ -1,0 +1,3 @@
+# The whole site is public by choice, so every crawler is welcome, AI assistants included.
+User-agent: *
+Allow: /

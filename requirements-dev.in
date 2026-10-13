@@ -1,0 +1,14 @@
+# Dev-only tooling: the hand-edited list. requirements-dev.txt is compiled from this file;
+# see requirements.in for the commands.
+pytest
+black
+ruff
+
+# Dependency vulnerability scan, run by CI's lint job. Locked here so CI doesn't install
+# whatever is latest on the day.
+pip-audit
+
+# Browser tests (tests/e2e). One-time browser install after pip install:
+#   python -m playwright install chromium
+playwright
+pytest-playwright

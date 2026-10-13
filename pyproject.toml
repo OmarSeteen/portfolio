@@ -1,0 +1,35 @@
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/W pycodestyle, F pyflakes, I import sorting, B bugbear, UP pyupgrade, S bandit's
+# security checks (string-built SQL, shell=True, weak hashes, binding to all interfaces).
+select = ["E", "W", "F", "I", "B", "UP", "S"]
+ignore = [
+    # Line length is black's job; long comments/docstrings are fine.
+    "E501",
+    # S603/S607 flag every subprocess call and every bare "git". The only commands run are
+    # git with fixed arguments, found on PATH because its install path differs per machine.
+    "S603",
+    "S607",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# pytest tests are built from assert; the addresses and hosts in them are test inputs.
+"tests/**" = ["S101", "S104"]
+
+[tool.pytest.ini_options]
+# Without testpaths pytest walks site/node_modules looking for tests.
+testpaths = ["tests"]
+# Lets tests import `admin` and `privacy_scan` from the repository root.
+pythonpath = ["."]
+markers = [
+    "e2e: browser-driven test (tests/e2e). Needs `playwright install chromium` and a built site (`npm --prefix site run build`). Excluded by default.",
+]
+# Plain `pytest` stays fast and browser-free: `pytest tests/e2e -m e2e` opts in.
+addopts = "-m 'not e2e'"

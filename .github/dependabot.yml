@@ -1,0 +1,28 @@
+# Pinning alone freezes known-vulnerable versions; this is the half that moves the pins.
+version: 2
+updates:
+  # "uv", not "pip": requirements*.txt are compiled by `uv pip compile --universal`, and the
+  # uv ecosystem re-runs the command recorded in each file's header. The pip ecosystem would
+  # regenerate with pip-tools, which has no universal mode and drops the Windows-only pins.
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # One PR a week instead of one per package; a solo repo can't review 40 PRs.
+      python:
+        patterns: ["*"]
+
+  - package-ecosystem: "npm"
+    directory: "/site"
+    schedule:
+      interval: "weekly"
+    groups:
+      site:
+        patterns: ["*"]
+
+  # ci.yml pins actions to commit SHAs; this keeps those SHAs current.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

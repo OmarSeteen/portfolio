@@ -1,0 +1,3 @@
+# Dev is Windows, CI is Linux. One line ending everywhere keeps the format checks and the
+# shell hook from failing on whichever machine did not write the file.
+* text=auto eol=lf

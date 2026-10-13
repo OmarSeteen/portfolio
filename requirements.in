@@ -1,0 +1,12 @@
+# Admin app runtime dependencies: the hand-edited list. requirements.txt is compiled from
+# this file with every package pinned and hashed, and that is what gets installed. Never edit
+# requirements.txt by hand.
+#
+# After changing this file, regenerate both locks. This needs uv, not pip-compile: pip-compile
+# only locks for the OS it runs on, and dev is Windows while CI is Linux.
+#   uv pip compile --universal --generate-hashes --python-version 3.12 requirements.in -o requirements.txt
+#   uv pip compile --universal --generate-hashes --python-version 3.12 -c requirements.txt requirements-dev.in -o requirements-dev.txt
+# Add --upgrade to move every pin to its latest release. Dependabot does the routine bumps.
+
+flask
+flask-wtf   # CSRF protection now, forms from the edit-forms story

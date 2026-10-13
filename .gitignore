@@ -1,0 +1,27 @@
+# This repository is public. Anything pushed once stays in git history for good,
+# so private material is ignored here from the first commit.
+
+# Product docs (PRD, build stories, research) and the source CV stay private.
+Product/
+CLAUDE.md
+.claude/
+
+# The admin database and the private-terms list hold values that never publish.
+data/
+
+# CV documents carry a phone number. A published PDF gets an explicit exception later.
+*.docx
+*.pdf
+
+# Secrets never reach a commit.
+.env
+
+# Installed and generated files.
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+node_modules/
+site/dist/
+.lighthouse/
+test-results/
